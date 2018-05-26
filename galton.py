@@ -130,3 +130,35 @@ def galton_rvs(theta, n_runs=100,
     all_t_xz = np.array(all_t_xz)
 
     return all_x, all_log_p_xz, all_t_xz, trajectories
+
+
+def galton_rvs_ratio(theta0, theta1, n_runs=100,
+                     n_rows=n_rows, n_nails=n_nails, random_state=None):
+    rng = check_random_state(random_state)
+    all_x = []
+    all_log_p_xz_0 = []
+    all_t_xz_0 = []
+    all_log_p_xz_1 = []
+    all_t_xz_1 = []
+    trajectories = []
+
+    for i in range(n_runs):
+        u = rng.rand(n_rows)
+        log_p_xz_0, (begin, z, x) = trace(theta0, u)
+        t_xz_0, _ = d_trace(theta0, u)
+        all_x.append(x)
+        all_log_p_xz_0.append(log_p_xz_0)
+        all_t_xz_0.append(t_xz_0)
+        trajectories.append([begin] + z + [x])
+
+        log_p_xz_1, _ = trace(theta1, u, theta_ref=theta0)
+        t_xz_1, _ = d_trace(theta1, u, theta_ref=theta0)
+        all_log_p_xz_1.append(log_p_xz_1)
+        all_t_xz_1.append(t_xz_1)
+
+    all_log_p_xz_0 = np.array(all_log_p_xz_0)
+    all_t_xz_0 = np.array(all_t_xz_0)
+    all_log_p_xz_1 = np.array(all_log_p_xz_1)
+    all_t_xz_1 = np.array(all_t_xz_1)
+
+    return all_x, all_log_p_xz_0, all_log_p_xz_1, all_t_xz_0, all_t_xz_1, trajectories
