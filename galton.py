@@ -12,7 +12,7 @@ def sigmoid(x):
 
 
 def check_random_state(random_state):
-    if isinstance(random_state, int):
+    if random_state is None or isinstance(random_state, int):
         return np.random.RandomState(random_state)
     else:
         return random_state
