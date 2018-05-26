@@ -19,7 +19,7 @@ def check_random_state(random_state):
 
 
 # Nails
-def nail_position(theta, n_rows=n_rows, n_nails=n_nails):
+def nail_positions(theta, n_rows=n_rows, n_nails=n_nails):
     pos = np.zeros((n_rows, n_nails))
     level = np.broadcast_to(np.arange(n_rows), (n_nails, n_rows)).T
 
@@ -112,18 +112,21 @@ d_trace = ag.grad_and_aux(trace)
 def galton_rvs(theta, n_runs=100,
                n_rows=n_rows, n_nails=n_nails, random_state=None):
     rng = check_random_state(random_state)
-    xs = []
-    scores = []
+    all_x = []
+    all_log_p_xz = []
+    all_t_xz = []
     trajectories = []
 
     for i in range(n_runs):
         u = rng.rand(n_rows)
-        _, (_, _, x) = trace(theta, u)
-        t_xz, (begin, z, x) = d_trace(theta, u)
-        xs.append(x)
-        scores.append(t_xz)
+        log_p_xz, (begin, z, x) = trace(theta, u)
+        t_xz, _ = d_trace(theta, u)
+        all_x.append(x)
+        all_log_p_xz.append(log_p_xz)
+        all_t_xz.append(t_xz)
         trajectories.append([begin] + z + [x])
 
-    scores = np.array(scores)
+    all_log_p_xz = np.array(all_log_p_xz)
+    all_t_xz = np.array(all_t_xz)
 
-    return xs, scores, trajectories
+    return all_x, all_log_p_xz, all_t_xz, trajectories
