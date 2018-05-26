@@ -65,19 +65,23 @@ def threshold(theta, trace):
     return t
 
 
-# Run trace and mine gold
-def trace(theta, u):
+# Run and mine gold
+def trace(theta, u, theta_ref=None):
+    if theta_ref is None:
+        theta_ref = theta
+
     begin = pos = n_nails // 2
     z = []
-    log_p_zx = 0.0
+    log_p_xz = 0.0
 
     while len(z) < n_rows:
+        t_ref = threshold(theta_ref, (begin, z))
         t = threshold(theta, (begin, z))
         level = len(z)
 
         # going left
-        if u[level] < t or t == 1.0:
-            log_p_zx += np.log(t)
+        if u[level] < t_ref or t_ref == 1.0:
+            log_p_xz += np.log(t)
 
             if level % 2 == 0:  # even rows
                 pos = pos
@@ -88,7 +92,7 @@ def trace(theta, u):
 
         # going right
         else:
-            log_p_zx += np.log(1. - t)
+            log_p_xz += np.log(1. - t)
 
             if level % 2 == 0:
                 pos = pos + 1
@@ -99,7 +103,7 @@ def trace(theta, u):
 
     x = pos
 
-    return log_p_zx, (begin, z, x)
+    return log_p_xz, (begin, z, x)
 
 d_trace = ag.grad_and_aux(trace)
 
@@ -115,11 +119,11 @@ def galton_rvs(theta, n_runs=100,
     for i in range(n_runs):
         u = rng.rand(n_rows)
         _, (_, _, x) = trace(theta, u)
-        d_log_p_zx, (begin, z, x) = d_trace(theta, u)
+        t_xz, (begin, z, x) = d_trace(theta, u)
         xs.append(x)
-        scores.append(d_log_p_zx)
+        scores.append(t_xz)
         trajectories.append([begin] + z + [x])
 
     scores = np.array(scores)
 
-    return xs, scores, trajectories[:100]
+    return xs, scores, trajectories
