@@ -27,9 +27,11 @@ def nail_positions(theta, n_rows=n_rows, n_nails=n_nails):
     level_rel = 1. * level / (n_rows - 1)
     nail_rel = 2. * nail / (n_nails - 1) - 1.
 
-    return (pos +
-            (1. - np.sin(np.pi * level_rel)) * 0.5 +
-            np.sin(np.pi * level_rel) * sigmoid(10 * theta * nail_rel))
+    return (
+        pos
+        + (1. - np.sin(np.pi * level_rel)) * 0.5
+        + np.sin(np.pi * level_rel) * sigmoid(10 * theta * nail_rel)
+    )
 
 
 def threshold(theta, trace):
@@ -59,8 +61,9 @@ def threshold(theta, trace):
 
     level_rel = 1. * level / (n_rows - 1)
     nail_rel = 2. * pos / (n_nails - 1) - 1.
-    t = ((1. - np.sin(np.pi * level_rel)) * 0.5 +
-         np.sin(np.pi * level_rel) * sigmoid(10 * theta * nail_rel))
+    t = (1. - np.sin(np.pi * level_rel)) * 0.5 + np.sin(np.pi * level_rel) * sigmoid(
+        10 * theta * nail_rel
+    )
 
     return t
 
@@ -85,7 +88,7 @@ def trace(theta, u, theta_ref=None):
 
             if level % 2 == 0:  # even rows
                 pos = pos
-            else:               # odd rows
+            else:  # odd rows
                 pos = pos - 1
 
             z.append(0)
@@ -105,12 +108,12 @@ def trace(theta, u, theta_ref=None):
 
     return log_p_xz, (begin, z, x)
 
+
 d_trace = ag.grad_and_aux(trace)
 
 
 # Generator
-def galton_rvs(theta, n_runs=100,
-               n_rows=n_rows, n_nails=n_nails, random_state=None):
+def galton_rvs(theta, n_runs=100, n_rows=n_rows, n_nails=n_nails, random_state=None):
     rng = check_random_state(random_state)
     all_x = []
     all_log_p_xz = []
@@ -132,8 +135,9 @@ def galton_rvs(theta, n_runs=100,
     return all_x, all_log_p_xz, all_t_xz, trajectories
 
 
-def galton_rvs_ratio(theta0, theta1, n_runs=100,
-                     n_rows=n_rows, n_nails=n_nails, random_state=None):
+def galton_rvs_ratio(
+    theta0, theta1, n_runs=100, n_rows=n_rows, n_nails=n_nails, random_state=None
+):
     rng = check_random_state(random_state)
     all_x = []
     all_log_p_xz_0 = []
