@@ -1,0 +1,13 @@
+name: simulator-mining-example
+
+dependencies:
+  - python=3
+  - numpy
+  - scipy
+  - matplotlib
+  - jupyter
+  - scikit-learn
+  - tensorflow
+  - keras
+  - pip:
+    - autograd
