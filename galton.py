@@ -75,7 +75,8 @@ def trace(theta, u, theta_ref=None):
 
     begin = pos = n_nails // 2
     z = []
-    log_p_xz = 0.0
+
+    log_p_xz = 0.0  # for mining
 
     while len(z) < n_rows:
         t_ref = threshold(theta_ref, (begin, z))
@@ -84,7 +85,7 @@ def trace(theta, u, theta_ref=None):
 
         # going left
         if u[level] < t_ref or t_ref == 1.0:
-            log_p_xz += np.log(t)
+            log_p_xz += np.log(t)  # for mining
 
             if level % 2 == 0:  # even rows
                 pos = pos
@@ -95,7 +96,7 @@ def trace(theta, u, theta_ref=None):
 
         # going right
         else:
-            log_p_xz += np.log(1. - t)
+            log_p_xz += np.log(1. - t)  # for mining
 
             if level % 2 == 0:
                 pos = pos + 1
@@ -106,13 +107,26 @@ def trace(theta, u, theta_ref=None):
 
     x = pos
 
-    return log_p_xz, (begin, z, x)
+    return log_p_xz, (begin, z, x)  # for mining: return log_p_xz
 
 
-d_trace = ag.grad_and_aux(trace)
+d_trace = ag.grad_and_aux(trace)  # for mining: calculate the gradient log_p_xz (the joint score) 
 
 
-# Generator
+# Generator, returns x~p(x|theta) as in the standard likelihood-free setting
+def galton_rvs_vanilla(theta, n_runs=100, n_rows=n_rows, n_nails=n_nails, random_state=None):
+    rng = check_random_state(random_state)
+    all_x = []
+
+    for i in range(n_runs):
+        u = rng.rand(n_rows)
+        dummy, (begin, z, x) = trace(theta, u)
+        all_x.append(x)
+        
+    return all_x
+
+
+# Generator, returns x~p(x|theta) and the mined joint score
 def galton_rvs(theta, n_runs=100, n_rows=n_rows, n_nails=n_nails, random_state=None):
     rng = check_random_state(random_state)
     all_x = []
@@ -134,7 +148,12 @@ def galton_rvs(theta, n_runs=100, n_rows=n_rows, n_nails=n_nails, random_state=N
 
     return all_x, all_log_p_xz, all_t_xz, trajectories
 
+# Generator, returns x~p(x|theta) and the mined joint score (name alias for clarity)
+def galton_rvs_score(theta, n_runs=100, n_rows=n_rows, n_nails=n_nails, random_state=None):
+    return galton_rvs(theta, n_runs=n_runs, n_rows=n_rows, n_nails=n_nails, random_state=random_state)
 
+
+# Generator variant, returns x~p(x|theta) and the mined joint score
 def galton_rvs_ratio(
     theta0, theta1, n_runs=100, n_rows=n_rows, n_nails=n_nails, random_state=None
 ):
