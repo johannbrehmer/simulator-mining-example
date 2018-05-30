@@ -24,7 +24,14 @@ The file [galton.ipynb](galton.ipynb) defines three variations of the simulator:
  * `galton_rvs_score`: returns `x~p(x|θ)` as well as the joint score `t(x,z|θ)`
  * `galton_rvs_ratio`: returns `x~p(x|θ)` as well as the joint score `t(x,z|θ)` and the joint ratio `r(x,z|θ0,θ1)`
 
-and the function `trace` has comments `# for mining` that show the accumulation of the information needed for the joint ratio and score. The notebook [Draw Galton Board.ipynb](Draw%20Galton%20Board.ipynb) runs the simulator and produces the figure above.
+and the function `trace` has comments `# for mining` that show the accumulation of the information needed for the joint ratio and score. The notebook [Draw Galton Board.ipynb](Draw%20Galton%20Board.ipynb) runs the simulator and produces the figures above and below. The left plot below shows the data being presented to to techniques based data from the vanilla version of the simulator used for density estimation and the likelihood ratio trick. The center and right plots below show the augmented data mined from the simulator, which is clearly much more informative.
+
+<div>
+<img  src="figures/plinko_vanilla.png"  width="30%" align="center" />
+<img  src="figures/plinko_ratio.png"  width="30%" align="center" />
+<img  src="figures/plinko_score.png"  width="30%" align="center" />
+</div>
+
 
 
 ## Learning from Augmented data
@@ -32,11 +39,10 @@ and the function `trace` has comments `# for mining` that show the accumulation 
 The notebook [Inference on Galton Board.ipynb](Inference%20on%20Galton%20Board.ipynb) use the augmented data mined from the simulators to demonstrate the new simulation-based inference methods. 
 The Table below summarizes which methods utilize the joint score and joint ratio via the loss functions `L_t` and `L_r` .
 
-<img  src="figures/table.png"  width="70%" align="center" />
-
-
-<img  src="figures/plinko_models_comparison.png"  width="320" align="center" />
-
+<div>
+<img  src="figures/table.png"  width="60%" align="center" />
+<img  src="figures/plinko_models_comparison.png"  width="35%" align="center" />
+</div>
 
 
 <!--
@@ -47,12 +53,14 @@ The Table below summarizes which methods utilize the joint score and joint ratio
 </div>
 -->
 
-## Generalizations
+## Abstraction
 
-<img  src="figures/mining_ppl.png"  width="300" align="left" />
+The left figure below show a probabilistic graphical model that summarizes a generic simulator, where the boxes indicate the joint score and joint ratio that can be mined from the simulator. The right figure below is a schematic diagram illustraiting the joint ratio (dots) and joint score (arrows) fluctuating around the intractable likelihood ratio implicit defined by the simulator.
 
-<img  src="figures/schematic-3d.png"  width="300" align="right" />
-
+<div>
+<img  src="figures/mining_ppl.png"  width="50%" align="left" />
+<img  src="figures/schematic-3d.png"  width="45%" align="right" />
+</div>
 
 
 
