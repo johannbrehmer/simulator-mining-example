@@ -18,7 +18,7 @@ As a motivating example, consider the simulation for a generalization of the [Ga
 can be computed by accumulating the factors `∇_θ log p(zh,zv|θ)` as the simulation runs forward through its control flow conditioned on the random trajectory `z`. A similar trick can be applied to extract the joint likelihood ratio
 <img  src="figures/joint_ratio_eqtn.png"  width="150" align="center" />.
 
-The file [galton.py](galton.py) defines three variations of the simulator:
+The file [galton.ipynb](galton.ipynb) defines three variations of the simulator:
 
  * `galton_rvs_vanilla`: only returns `x~p(x|θ)`
  * `galton_rvs_score`: returns `x~p(x|θ)` as well as the joint score `t(x,z|θ)`
