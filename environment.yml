@@ -11,3 +11,4 @@ dependencies:
   - keras
   - pip:
     - autograd
+    - import_ipynb
