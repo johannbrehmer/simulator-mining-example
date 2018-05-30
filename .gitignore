@@ -1,2 +1,4 @@
 data/nde_*.npy
 data/ratio_*.npy
+data/mses_*.npy
+data_backup
