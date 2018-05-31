@@ -67,6 +67,10 @@ The left figure below shows a probabilistic graphical model that summarizes a ge
 
 &nbsp;
 
+&nbsp;
+
+&nbsp;
+
 
 
 ## References
