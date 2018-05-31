@@ -63,7 +63,8 @@ The left figure below shows a probabilistic graphical model that summarizes a ge
 <img  src="figures/schematic-3d.png"  width="40%" align="right" />
 </div>
 
-\
+\ 
+\ 
 
 
 
