@@ -1,2 +1,12 @@
+.*
+*~
+*.bak
 *.pyc
-.ipynb_checkpoints/*
+# slurm*
+__pycache__
+core.*
+data/mses_*.npy
+data/ratio_*.npy
+data/nde_*.npy
+
+!/.gitignore
