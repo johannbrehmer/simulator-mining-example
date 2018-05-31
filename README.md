@@ -62,16 +62,6 @@ The left figure below show a probabilistic graphical model that summarizes a gen
 </div>
 
 
-## Abstraction
-
-The left figure below shows a probabilistic graphical model that summarizes a generic simulator, where the boxes indicate the joint score and joint ratio that can be mined from the simulator. The right figure below is a schematic diagram illustrating the joint ratio (dots) and joint score (arrows) fluctuating around the intractable likelihood ratio implicitly defined by the simulator.
-
-<div>
-<img  src="figures/mining_ppl.png"  width="50%" align="left" />
-<img  src="figures/schematic-3d.png"  width="45%" align="right" />
-</div>
-
-
 ## References
 
 The main reference for the new inference methods is
