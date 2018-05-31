@@ -11,7 +11,16 @@ margin_t_absolute_extra = 8. * 0.12
 margin_b_absolute = 8. * 0.08
 
 
-colors = ["#CC002E","orange","mediumblue","darkgreen","c","#be96ff","0.65","black",]
+colors = [
+    "#CC002E",
+    "orange",
+    "mediumblue",
+    "darkgreen",
+    "c",
+    "#be96ff",
+    "0.65",
+    "black",
+]
 
 our_cmap = mpl.colors.LinearSegmentedColormap.from_list(
     name="rascascal", colors=["#CC002E", "0.85", "mediumblue"], N=201
@@ -123,7 +132,7 @@ def adjust_margins(n_panels=2, width=8., panel_aspect_ratio=1., extra_top_space=
         hspace=hspace,
     )
 
-    
+
 def cmap_color(x, xmin=0., xmax=1.):
     # cmap = mpl.cm.RdYlBu
     return our_cmap((x - xmin) / (xmax - xmin))
@@ -132,7 +141,6 @@ def cmap_color(x, xmin=0., xmax=1.):
 def viridis_color(x, xmin=0., xmax=1.):
     cmap = mpl.cm.viridis
     return cmap((x - xmin) / (xmax - xmin))
-
 
 
 def custom_figure(
@@ -204,4 +212,3 @@ def custom_figure(
     )
 
     return fig
-
