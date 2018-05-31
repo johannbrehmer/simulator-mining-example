@@ -36,8 +36,7 @@ and the function `trace` has comments `# for mining` that show the accumulation 
 
 ## Learning from Augmented data
 
-The notebook [Inference on Galton Board.ipynb](Inference%20on%20Galton%20Board.ipynb) use the augmented data mined from the simulators to demonstrate the new simulation-based inference methods. 
-The Table below summarizes which methods utilize the joint score and joint ratio via the loss functions `L_t` and `L_r` .
+The notebook [Inference on Galton Board.ipynb](Inference%20on%20Galton%20Board.ipynb) uses the augmented data mined from the simulators to demonstrate the new simulation-based inference methods. The table below summarizes which methods utilize the joint score and joint ratio via the loss functions `L_t` and `L_r` .
 
 <div>
 <img  src="figures/table.png"  width="60%" align="center" />
