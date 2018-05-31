@@ -6,10 +6,10 @@ Code repository for the generalized Galton board example in the paper "Mining go
 
 Simulators often provide the best description of real-world phenomena; however, they also lead to challenging inverse problems because the density they implicitly define is often intractable. Typically the setting of likelihood-free inference methods assumes that the only available output from the simulator are samples of observations `x ∼ p(x|θ)`. However, in many cases additional information can be extracted from the simulator, and  this “augmented” data can dramatically improve sample efficiency and quality of likelihood-free inference. We playfully introduce the analogy of **mining gold** as this augmented data requires work to extract and is very valuable. Furthermore, we have introduced a suite of new simulation-based inference techniques that exploit this augmented data. 
 
-This repository provides an explicit example of mining for a toy simulator and a notebook demonstraiting the new simulation-based inference techniques. While these examples are meant to be pedagogical, the techniques have been used in real-world examples in particle physics (see [arXiv:1805.00020](https://arxiv.org/abs/1805.00020)).
+This repository provides an explicit example of mining for a toy simulator and a notebook demonstraiting the new simulation-based inference techniques. While these examples are meant to be pedagogical, the techniques have been used in real-world examples in particle physics (see [arXiv:1805.00013](https://arxiv.org/abs/1805.00013) and [arXiv:1805.00020](https://arxiv.org/abs/1805.00020)).
 
 
-## Generalized Galton Board Example
+## Generalized Galton board Example
 
 <img  src="figures/plinko_histogram.png"  width="340" align="right" />
 
@@ -34,7 +34,7 @@ and the function `trace` has comments `# for mining` that show the accumulation 
 
 
 
-## Learning from Augmented data
+## Learning from augmented data
 
 The notebook [Inference on Galton Board.ipynb](Inference%20on%20Galton%20Board.ipynb) uses the augmented data mined from the simulators to demonstrate the new simulation-based inference methods. The table below summarizes which methods utilize the joint score and joint ratio via the loss functions `L_t` and `L_r` .
 
@@ -61,6 +61,75 @@ The left figure below show a probabilistic graphical model that summarizes a gen
 <img  src="figures/schematic-3d.png"  width="45%" align="right" />
 </div>
 
+
+## Abstraction
+
+The left figure below shows a probabilistic graphical model that summarizes a generic simulator, where the boxes indicate the joint score and joint ratio that can be mined from the simulator. The right figure below is a schematic diagram illustrating the joint ratio (dots) and joint score (arrows) fluctuating around the intractable likelihood ratio implicitly defined by the simulator.
+
+<div>
+<img  src="figures/mining_ppl.png"  width="50%" align="left" />
+<img  src="figures/schematic-3d.png"  width="45%" align="right" />
+</div>
+
+
+## References
+
+The main reference for the new inference methods is
+```
+@article{Brehmer:2018XXX,
+      author         = "Brehmer, Johann and Louppe, Gilles and Pavez, Juan and
+                        Cranmer, Kyle",
+      title          = "{Mining gold from implicit models to improve likelihood-free inference}",
+      year           = "2018",
+      eprint         = "1805.XXXXX",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ph",
+      SLACcitation   = "%%CITATION = ARXIV:1805.XXXXX;%%"
+}
+```
+
+CARL was introduced in
+```
+@article{Cranmer:2015bka,
+      author         = "Cranmer, Kyle and Pavez, Juan and Louppe, Gilles",
+      title          = "{Approximating Likelihood Ratios with Calibrated
+                        Discriminative  Classifiers}",
+      year           = "2015",
+      eprint         = "1506.02169",
+      archivePrefix  = "arXiv",
+      primaryClass   = "stat.AP",
+      SLACcitation   = "%%CITATION = ARXIV:1506.02169;%%"
+}
+```
+
+The new techniques were applied to a class of problems from particle physics in
+```
+@article{Brehmer:2018kdj,
+      author         = "Brehmer, Johann and Cranmer, Kyle and Louppe, Gilles and
+                        Pavez, Juan",
+      title          = "{Constraining Effective Field Theories with Machine
+                        Learning}",
+      year           = "2018",
+      eprint         = "1805.00013",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ph",
+      SLACcitation   = "%%CITATION = ARXIV:1805.00013;%%"
+}
+```
+and
+```
+@article{Brehmer:2018eca,
+      author         = "Brehmer, Johann and Cranmer, Kyle and Louppe, Gilles and
+                        Pavez, Juan",
+      title          = "{A Guide to Constraining Effective Field Theories with
+                        Machine Learning}",
+      year           = "2018",
+      eprint         = "1805.00020",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ph",
+      SLACcitation   = "%%CITATION = ARXIV:1805.00020;%%"
+}
+```
 
 
 
