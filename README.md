@@ -52,14 +52,17 @@ The notebook [Inference on Galton Board.ipynb](Inference%20on%20Galton%20Board.i
 </div>
 -->
 
+
+
 ## Abstraction
 
-The left figure below show a probabilistic graphical model that summarizes a generic simulator, where the boxes indicate the joint score and joint ratio that can be mined from the simulator. The right figure below is a schematic diagram illustraiting the joint ratio (dots) and joint score (arrows) fluctuating around the intractable likelihood ratio implicit defined by the simulator.
+The left figure below shows a probabilistic graphical model that summarizes a generic simulator, where the boxes indicate the joint score and joint ratio that can be mined from the simulator. The right figure below is a schematic diagram illustraiting the joint ratio (dots) and joint score (arrows) fluctuating around the intractable likelihood ratio implicitly defined by the simulator.
 
 <div>
 <img  src="figures/mining_ppl.png"  width="50%" align="left" />
-<img  src="figures/schematic-3d.png"  width="45%" align="right" />
+<img  src="figures/schematic-3d.png"  width="40%" align="right" />
 </div>
+
 
 
 ## References
