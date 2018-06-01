@@ -68,14 +68,15 @@ The left figure below shows a probabilistic graphical model that summarizes a ge
 
 The main reference for the new inference methods is
 ```
-@article{Brehmer:2018XXX,
+@article{Brehmer:2018hga,
       author         = "Brehmer, Johann and Louppe, Gilles and Pavez, Juan and
                         Cranmer, Kyle",
-      title          = "{Mining gold from implicit models to improve likelihood-free inference}",
+      title          = "{Mining gold from implicit models to improve
+                        likelihood-free inference}",
       year           = "2018",
       eprint         = "1805.12244",
       archivePrefix  = "arXiv",
-      primaryClass   = "hep-ph",
+      primaryClass   = "stat.ML",
       SLACcitation   = "%%CITATION = ARXIV:1805.12244;%%"
 }
 ```
