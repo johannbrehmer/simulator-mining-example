@@ -1,6 +1,6 @@
 # Simulator Mining Example [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/johannbrehmer/simulator-mining-example/master)
 
-Code repository for the generalized Galton board example in the paper "Mining gold from implicit models to improve likelihood-free inference" by Johann Brehmer, Gilles Louppe, Juan Pavez, and Kyle Cranmer. 
+Code repository for the generalized Galton board example in the paper ["Mining gold from implicit models to improve likelihood-free inference"](https://arxiv.org/abs/1805.12244) by Johann Brehmer, Gilles Louppe, Juan Pavez, and Kyle Cranmer. 
 
 ## Introduction
 
@@ -73,10 +73,10 @@ The main reference for the new inference methods is
                         Cranmer, Kyle",
       title          = "{Mining gold from implicit models to improve likelihood-free inference}",
       year           = "2018",
-      eprint         = "1805.XXXXX",
+      eprint         = "1805.12244",
       archivePrefix  = "arXiv",
       primaryClass   = "hep-ph",
-      SLACcitation   = "%%CITATION = ARXIV:1805.XXXXX;%%"
+      SLACcitation   = "%%CITATION = ARXIV:1805.12244;%%"
 }
 ```
 
