@@ -14,7 +14,7 @@ This repository provides an explicit example of mining for a toy simulator and a
 <img  src="figures/plinko_histogram.png"  width="340" align="right" />
 
 As a motivating example, consider the simulation for a generalization of the [Galton board](https://en.wikipedia.org/wiki/Bean_machine) (or "bean machine"), in which a set of balls is dropped through a lattice of nails ending in one of several bins denoted by `x`. The Galton board is commonly used to demonstrate the central limit theorem, and if the nails are uniformly placed such that the probability of bouncing to the left is `p`, the sum over the latent space is tractable analytically and the resulting distribution of `x` is a binomial distribution with `N_rows` trials and probability `p` of success. However, if the nails are not uniformly placed, and the probability of bouncing to the left is an arbitrary function of the nail position and some parameter `θ`, the resulting distribution requires an explicit sum over the latent paths `z` that might lead to a particular `x`. Such a distribution would become intractable as `N_rows`, the size of the lattice of nails, increases. The figure to the right shows an example of two latent trajectories that lead to the same `x`. In this toy example, the probability `p(zh, zv, θ)` of going left is given by `(1−f(zv))/2+f(zv)σ(5θ(zh −1/2))`, where `f(zv) = sin(πzv)`, `σ` is the sigmoid function, and `zh` and `zv` are the horizontal and vertical nail positions normalized to `[0, 1]`. This leads to a non-trivial `p(x|θ)`, which can even be bimodal. While `p(x|θ)` is intractable, the joint score
-􏰀<img  src="figures/joint_score_eqtn.png"  width="150" align="center" />
+<img  src="figures/joint_score_eqtn.png"  width="150" align="center" />
 can be computed by accumulating the factors `∇_θ log p(zh,zv|θ)` as the simulation runs forward through its control flow conditioned on the random trajectory `z`. A similar trick can be applied to extract the joint likelihood ratio
 <img  src="figures/joint_ratio_eqtn.png"  width="150" align="center" />.
 
@@ -36,7 +36,7 @@ and the function `trace` has comments `# for mining` that show the accumulation 
 
 ## Learning from augmented data
 
-The notebook [Inference on Galton Board.ipynb](Inference%20on%20Galton%20Board.ipynb) uses the augmented data mined from the simulators to demonstrate the new simulation-based inference methods. The table below summarizes which methods utilize the joint score and joint ratio via the loss functions `L_t` and `L_r` .
+The notebook [Inference on Galton Board.ipynb](Inference%20on%20Galton%20Board.ipynb) uses the augmented data mined from the simulators to demonstrate the new simulation-based inference methods. The table below summarizes which methods utilize the joint score and joint ratio via the loss functions `L_t` and `L_r` . The figure below shows the mean squared error in approximating the true log-likelihood ratio using these techniques. The methods SCANDAL, RASCAL, and ROLR that use the augmented data are dramatically more sample efficient than the NDE and LRT methods that do not. Similar results were found in the real-world physics example in [arXiv:1805.00013](https://arxiv.org/abs/1805.00013).
 
 <div>
 <img  src="figures/table.png"  width="60%" align="center" />
